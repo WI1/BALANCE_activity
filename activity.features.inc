@@ -6,7 +6,7 @@
 function activity_rules_defaults() {
   return array(
     'rules' => array(
-      'hrule_add_page' => array(
+      'activity_1' => array(
         '#type' => 'rule',
         '#set' => 'event_node_insert',
         '#label' => 'Heartbeat: when user adds a page, log user activity',
@@ -108,7 +108,7 @@ function activity_rules_defaults() {
         ),
         '#version' => 6003,
       ),
-      'hrules_add_comment' => array(
+      'activity_2' => array(
         '#type' => 'rule',
         '#set' => 'event_comment_publish',
         '#label' => 'Heartbeat: When a user adds a comment',
@@ -158,65 +158,6 @@ function activity_rules_defaults() {
                     '0' => 'comment',
                     '1' => 'comment_author',
                     '2' => 'node',
-                  ),
-                ),
-              ),
-            ),
-            '#type' => 'action',
-          ),
-        ),
-        '#version' => 6003,
-      ),
-      'og_activity_rules_1' => array(
-        '#type' => 'rule',
-        '#set' => 'event_og_become_co_admin',
-        '#categories' => array(
-          '0' => 'og_activity',
-          '1' => 'heartbeat',
-          'activity' => 'activity',
-        ),
-        '#label' => 'User becomes co-admin of a group',
-        '#active' => 0,
-        '#weight' => '0',
-        '#status' => 'default',
-        '#conditions' => array(),
-        '#actions' => array(
-          '0' => array(
-            '#weight' => 1,
-            '#info' => array(
-              'label' => 'Logs user activity for single users',
-              'eval input' => array(
-                '0' => 'uid_param',
-                '1' => 'uid_target_param',
-                '2' => 'nid_param',
-                '3' => 'nid_target_param',
-                '4' => 'message_id_param',
-                '5' => 'variables_param',
-              ),
-              'module' => 'heartbeat',
-            ),
-            '#name' => 'heartbeat_rules_default_action',
-            '#settings' => array(
-              'uid_param' => '[user:uid]',
-              'uid_target_param' => '0',
-              'nid_param' => '[node:nid]',
-              'nid_target_param' => '[node:og-id]',
-              'message_id_param' => 'og_become_co_admin',
-              'variables_param' => '@username=|=[user:user-name-url]-|-@group=|=[node:title-link]-|-',
-              '#eval input' => array(
-                'token_rules_input_evaluator' => array(
-                  'uid_param' => array(
-                    '0' => 'user',
-                  ),
-                  'nid_param' => array(
-                    '0' => 'node',
-                  ),
-                  'nid_target_param' => array(
-                    '0' => 'node',
-                  ),
-                  'variables_param' => array(
-                    '0' => 'node',
-                    '1' => 'user',
                   ),
                 ),
               ),
